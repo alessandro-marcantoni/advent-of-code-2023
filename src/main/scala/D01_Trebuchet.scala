@@ -14,7 +14,9 @@ object D01_Trebuchet {
   )
 
   private def replaceWords(line: String): String =
-    numbersMap.foldLeft(line) { case (acc, (key, value)) => acc.replaceAll(value, key.toString) }
+    numbersMap.foldLeft(line) { case (acc, (key, value)) =>
+      acc.replaceAll(value, value(0) + key.toString + value(value.length - 1))
+    }
 
   private def solve(lines: List[String]): Int = lines
     .map(_.toCharArray.filter(_.isDigit).toList)
